@@ -40,6 +40,7 @@ import DebugToolbar, { showingDebugToolbar, toggleDebugToolbar } from './debug-t
 import { getRouter, getUrlState } from '../utils/router-utils';
 import { trackMixpanelEvent } from '../utils/tracking-utils';
 import { availableNetworksSelector } from '../selectors/node-networks';
+import { showingTimeTravelSelector } from '../selectors/time-travel';
 import {
   isResourceViewModeSelector,
   isTableViewModeSelector,
@@ -201,6 +202,8 @@ class App extends React.Component {
 
         <Nodes />
 
+        {showingTimeTravel && <TimeTravel />}
+
         <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
           {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
           {!isResourceViewMode && <Status />}
@@ -222,13 +225,13 @@ function mapStateToProps(state) {
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
+    showingTimeTravel: showingTimeTravelSelector(state),
     pinnedMetricType: state.get('pinnedMetricType'),
     routeSet: state.get('routeSet'),
     searchFocused: state.get('searchFocused'),
     searchQuery: state.get('searchQuery'),
     showingDetails: state.get('nodeDetails').size > 0,
     showingHelp: state.get('showingHelp'),
-    showingTimeTravel: state.get('showingTimeTravel'),
     showingTroubleshootingMenu: state.get('showingTroubleshootingMenu'),
     showingNetworkSelector: availableNetworksSelector(state).count() > 0,
     showingTerminal: state.get('controlPipes').size > 0,
