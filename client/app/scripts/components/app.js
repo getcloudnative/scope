@@ -186,7 +186,7 @@ class App extends React.Component {
         {showingDetails && <Details />}
 
         <div className="header">
-          <TimeTravel />
+          {showingTimeTravel && <TimeTravel />}
           <div className="selectors">
             <div className="logo">
               {!isIframe && <svg width="100%" height="100%" viewBox="0 0 1089 217">
@@ -201,8 +201,6 @@ class App extends React.Component {
         </div>
 
         <Nodes />
-
-        {showingTimeTravel && <TimeTravel />}
 
         <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
           {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}

@@ -660,8 +660,9 @@ export function receiveApiDetails(apiDetails) {
     type: ActionTypes.RECEIVE_API_DETAILS,
     capabilities: fromJS(apiDetails.capabilities),
     hostname: apiDetails.hostname,
-    plugins: apiDetails.plugins,
     version: apiDetails.version,
+    newVersion: apiDetails.newVersion,
+    plugins: apiDetails.plugins,
   };
 }
 
