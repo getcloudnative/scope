@@ -8,6 +8,7 @@ import { clickCloseDetails, clickShowTopologyForNode } from '../actions/app-acti
 import { brightenColor, getNeutralColor, getNodeColorDark } from '../utils/color-utils';
 import { isGenericTable, isPropertyList } from '../utils/node-details-utils';
 import { resetDocumentTitle, setDocumentTitle } from '../utils/title-utils';
+import { currentNodesSelector } from '../selectors/topology';
 
 import MatchedText from './matched-text';
 import NodeDetailsControls from './node-details/node-details-controls';
@@ -280,8 +281,8 @@ class NodeDetails extends React.Component {
 function mapStateToProps(state, ownProps) {
   const currentTopologyId = state.get('currentTopologyId');
   return {
+    nodes: currentNodesSelector(state),
     nodeMatches: state.getIn(['searchNodeMatches', currentTopologyId, ownProps.id]),
-    nodes: state.get('nodes'),
     selectedNodeId: state.get('selectedNodeId'),
   };
 }
