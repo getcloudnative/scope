@@ -175,7 +175,7 @@ function clearNodes(state) {
   if (!topologyId) return state;
 
   return state
-    .updateIn(['nodesByTopology', topologyId], nodes => nodes.clear())
+    .setIn(['nodesByTopology', topologyId], makeMap())
     .set('nodesLoaded', false);
 }
 
